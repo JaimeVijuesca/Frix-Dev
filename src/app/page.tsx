@@ -153,38 +153,47 @@ export default function Home() {
         </section>
 
         <section id="portfolio" className="w-full py-12 md:py-24 lg:py-32 bg-card">
-          <div className="container px-4 md:px-6">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <div className="inline-block rounded-lg bg-secondary px-3 py-1 text-sm">Nuestro Trabajo</div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl font-headline">Proyectos Destacados</h2>
-                <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  Echa un vistazo a algunos de los sitios web que hemos creado para pequeños negocios.
-                </p>
-              </div>
-            </div>
-            <div className="mx-auto grid gap-8 sm:grid-cols-2 lg:grid-cols-3 mt-12">
-              {portfolio.map((item) => (
-                <Card key={item.title} className="overflow-hidden">
-                  <CardHeader className="p-0">
-                    <Image
-                      src={item.imageUrl}
-                      width={600}
-                      height={400}
-                      alt={item.title}
-                      data-ai-hint={item.imageHint}
-                      className="aspect-video object-cover"
-                    />
-                  </CardHeader>
-                  <CardContent className="p-6">
-                    <CardTitle className="font-headline">{item.title}</CardTitle>
-                    <CardDescription className="mt-2">{item.description}</CardDescription>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
+  <div className="container px-4 md:px-6">
+    <div className="flex flex-col items-center justify-center space-y-4 text-center">
+      <div className="space-y-2">
+        <div className="inline-block rounded-lg bg-secondary px-3 py-1 text-sm">
+          Proyectos de muestra
+        </div>
+        <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl font-headline">
+          Ejemplos de diseño web
+        </h2>
+        <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+          Ejemplos de sitios web que puedo crear para pequeños negocios y emprendedores.
+          Diseños modernos, rápidos y pensados para convertir visitantes en clientes.
+        </p>
+      </div>
+    </div>
+    <div className="mx-auto grid gap-8 sm:grid-cols-2 lg:grid-cols-3 mt-12">
+      {portfolio.map((item) => (
+        <Card key={item.title} className="overflow-hidden">
+          <CardHeader className="p-0">
+            <Image
+              src={item.imageUrl}
+              width={600}
+              height={400}
+              alt={item.title}
+              data-ai-hint={item.imageHint}
+              className="aspect-video object-cover"
+            />
+          </CardHeader>
+          <CardContent className="p-6">
+            <CardTitle className="font-headline">
+              {item.title} <span className="text-sm text-muted-foreground">(demo)</span>
+            </CardTitle>
+            <CardDescription className="mt-2">
+              {item.description}
+            </CardDescription>
+          </CardContent>
+        </Card>
+      ))}
+    </div>
+  </div>
+</section>
 
         <section id="pricing" className="w-full py-12 md:py-24 lg:py-32 bg-secondary/50">
           <div className="container px-4 md:px-6">
