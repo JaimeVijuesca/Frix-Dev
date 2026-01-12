@@ -1,15 +1,14 @@
 'use server';
 
-import { z } from 'zod';
 import { MessageData } from 'genkit';
 
-const OLLAMA_API_KEY = process.env.OLLAMA_API_KEY;
-const OLLAMA_MODEL = 'llama2-7b';
+const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'https://ia-web-7fur.onrender.com';
 
 export async function digitalAgent(
   history: MessageData[],
   message: string
 ): Promise<string> {
+  // Construimos un prompt con información de Frix, igual que antes
   const systemPrompt = `Eres un asistente de IA para Frix, un servicio de desarrollo web. Tu nombre es Asistente Frix.
 Eres amigable, profesional y tu objetivo es responder preguntas sobre Frix y ayudar a los usuarios a entender los servicios.
 
@@ -37,18 +36,23 @@ Mantén tus respuestas breves y directas. Si no sabes la respuesta a algo, di am
 
   const prompt = `${systemPrompt}\n\nUsuario: ${message}`;
 
-  const res = await fetch(`https://api.ollama.com/models/${OLLAMA_MODEL}`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${OLLAMA_API_KEY}`,
-    },
-    body: JSON.stringify({ prompt, temperature: 0.7, max_tokens: 512 }),
-  });
+  try {
+    const res = await fetch(`${BACKEND_URL}/chat`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ prompt, max_length: 100 }),
+    });
 
-  if (!res.ok) throw new Error(`Ollama API error: ${res.status} ${res.statusText}`);
+    if (!res.ok) {
+      throw new Error(`Backend error: ${res.status} ${res.statusText}`);
+    }
 
-  const data = await res.json();
-  // Devuelve solo el texto de la IA
-  return data.completion as string;
+    const data = await res.json();
+    return data.completion as string;
+  } catch (err) {
+    console.error(err);
+    return 'Lo siento, hubo un error procesando tu solicitud. Por favor, inténtalo más tarde.';
+  }
 }

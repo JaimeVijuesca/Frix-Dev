@@ -1,16 +1,16 @@
 'use server';
 /**
- * Genera ideas de sitios web usando Ollama Cloud vía HTTP.
+ * Genera ideas de sitios web usando tu backend FastAPI con tiny-gpt2.
  */
 
 import { WebsiteIdeaInput, WebsiteIdeaOutput } from '../schemas';
 
-const OLLAMA_API_KEY = process.env.OLLAMA_API_KEY; // Pon tu API key de Ollama Cloud
-const OLLAMA_MODEL = 'llama2-7b'; // Modelo que quieres usar
+const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'https://ia-web-7fur.onrender.com';
 
 export async function generateWebsiteIdea(
   input: WebsiteIdeaInput
 ): Promise<WebsiteIdeaOutput> {
+  // Prompt que será enviado al modelo
   const prompt = `Tu tarea es generar un concepto de sitio web en formato JSON basado en la descripción de un negocio.
 
 **Descripción del negocio:**
@@ -29,20 +29,25 @@ Basado en la descripción anterior, genera los siguientes campos:
 
 Devuelve únicamente el objeto JSON solicitado.`;
 
-  const res = await fetch(`https://api.ollama.com/models/${OLLAMA_MODEL}`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${OLLAMA_API_KEY}`,
-    },
-    body: JSON.stringify({ prompt, temperature: 0.8, max_tokens: 512 }),
-  });
+  try {
+    const res = await fetch(`${BACKEND_URL}/chat`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ prompt, max_length: 512 }),
+    });
 
-  if (!res.ok) {
-    throw new Error(`Ollama API error: ${res.status} ${res.statusText}`);
+    if (!res.ok) {
+      throw new Error(`Backend error: ${res.status} ${res.statusText}`);
+    }
+
+    const data = await res.json();
+
+    // Se espera que la respuesta devuelva un JSON en formato string dentro de completion
+    return JSON.parse(data.completion) as WebsiteIdeaOutput;
+  } catch (err) {
+    console.error(err);
+    throw new Error('Error generando la idea de sitio web. Intenta de nuevo más tarde.');
   }
-
-  const data = await res.json();
-  // Ollama Cloud devuelve el texto en data.text o similar según su API
-  return JSON.parse(data.text) as WebsiteIdeaOutput;
 }
