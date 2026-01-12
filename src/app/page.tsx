@@ -1,8 +1,7 @@
 import { Button } from "../components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../components/ui/card";
-import { Input } from "../components/ui/input";
-import { Label } from "../components/ui/label";
-import { Textarea } from "../components/ui/textarea";
+
+import ContactForm from "../components/contact-form";
 import { PlaceHolderImages } from "../lib/placeholder-images";
 import { services, portfolio, processSteps } from "../lib/data";
 import { BrainCircuit, CheckCircle, Code, Mail, Send, Bot, Sparkles, Check, DollarSign } from "lucide-react";
@@ -10,6 +9,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { NextJsLogo, TailwindCssLogo, VercelLogo } from "../components/tech-logos";
 import { AiIdeaGenerator } from "../components/ai-idea-generator";
+
 
 export default function Home() {
   return (
@@ -268,23 +268,7 @@ export default function Home() {
               </p>
             </div>
             <div className="mx-auto w-full max-w-sm space-y-2">
-              <form className="flex flex-col space-y-4">
-                <div className="space-y-2 text-left">
-                  <Label htmlFor="name">Nombre</Label>
-                  <Input id="name" placeholder="Tu nombre" required />
-                </div>
-                <div className="space-y-2 text-left">
-                  <Label htmlFor="email">Email</Label>
-                  <Input id="email" type="email" placeholder="tu@email.com" required />
-                </div>
-                <div className="space-y-2 text-left">
-                  <Label htmlFor="message">Mensaje</Label>
-                  <Textarea id="message" placeholder="Cuéntanos sobre tu proyecto" required />
-                </div>
-                <Button type="submit" className="w-full">
-                  <Send className="mr-2 h-4 w-4" /> Enviar Solicitud
-                </Button>
-              </form>
+             <ContactForm />
             </div>
           </div>
         </section>

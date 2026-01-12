@@ -1,18 +1,20 @@
 'use server';
 /**
- * @fileOverview Flujo de Genkit para generar ideas de sitios web.
- *
- * - generateWebsiteIdea - Genera un concepto básico para un sitio web.
+ * Genera ideas de sitios web usando Ollama Cloud vía HTTP.
  */
 
-import { ai } from '../genkit';
-import { googleAI } from '@genkit-ai/google-genai';
-import { WebsiteIdeaInputSchema, WebsiteIdeaOutputSchema, type WebsiteIdeaInput, type WebsiteIdeaOutput } from '../schemas';
+import { WebsiteIdeaInput, WebsiteIdeaOutput } from '../schemas';
 
-const prompt = `Tu tarea es generar un concepto de sitio web en formato JSON basado en la descripción de un negocio.
+const OLLAMA_API_KEY = process.env.OLLAMA_API_KEY; // Pon tu API key de Ollama Cloud
+const OLLAMA_MODEL = 'llama2-7b'; // Modelo que quieres usar
+
+export async function generateWebsiteIdea(
+  input: WebsiteIdeaInput
+): Promise<WebsiteIdeaOutput> {
+  const prompt = `Tu tarea es generar un concepto de sitio web en formato JSON basado en la descripción de un negocio.
 
 **Descripción del negocio:**
-{{{input.businessDescription}}}
+${input.businessDescription}
 
 Basado en la descripción anterior, genera los siguientes campos:
 1.  **title:** Un nombre creativo y memorable para el sitio web.
@@ -25,26 +27,22 @@ Basado en la descripción anterior, genera los siguientes campos:
     - **accent:** Un color de acento en formato HSL (ej: "174 100% 29%").
     - **description:** Una justificación breve de la elección de colores basada en la psicología del color y el negocio.
 
-Asegúrate de que tu respuesta sea únicamente el objeto JSON solicitado.`;
+Devuelve únicamente el objeto JSON solicitado.`;
 
-const generateWebsiteIdeaFlow = ai.defineFlow(
-  {
-    name: 'generateWebsiteIdeaFlow',
-    inputSchema: WebsiteIdeaInputSchema,
-    outputSchema: WebsiteIdeaOutputSchema,
-  },
-  async (input) => {
-    const { output } = await ai.generate({
-      model: googleAI.model('gemini-pro'),
-      prompt,
-      input: { input },
-      output: { schema: WebsiteIdeaOutputSchema },
-      temperature: 0.8, // Opcional: controla creatividad
-    });
-    return output!;
+  const res = await fetch(`https://api.ollama.com/models/${OLLAMA_MODEL}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${OLLAMA_API_KEY}`,
+    },
+    body: JSON.stringify({ prompt, temperature: 0.8, max_tokens: 512 }),
+  });
+
+  if (!res.ok) {
+    throw new Error(`Ollama API error: ${res.status} ${res.statusText}`);
   }
-);
 
-export async function generateWebsiteIdea(input: WebsiteIdeaInput): Promise<WebsiteIdeaOutput> {
-  return generateWebsiteIdeaFlow(input);
+  const data = await res.json();
+  // Ollama Cloud devuelve el texto en data.text o similar según su API
+  return JSON.parse(data.text) as WebsiteIdeaOutput;
 }

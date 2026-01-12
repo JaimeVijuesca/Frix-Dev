@@ -1,24 +1,16 @@
 'use server';
-/**
- * @fileOverview Flujo del agente digital para responder preguntas sobre Frix.
- *
- * - digitalAgent - Una función que responde preguntas sobre Frix.
- * @param history - El historial de la conversación.
- * @param message - El nuevo mensaje del usuario.
- * @returns La respuesta del agente.
- */
 
-import { ai } from '../genkit';
-import { googleAI } from '@genkit-ai/google-genai';
-import { MessageData } from 'genkit';
 import { z } from 'zod';
+import { MessageData } from 'genkit';
 
-const DigitalAgentInputSchema = z.object({
-  history: z.array(z.custom<MessageData>()),
-  message: z.string(),
-});
+const OLLAMA_API_KEY = process.env.OLLAMA_API_KEY;
+const OLLAMA_MODEL = 'llama2-7b';
 
-const systemPrompt = `Eres un asistente de IA para Frix, un servicio de desarrollo web. Tu nombre es Asistente Frix.
+export async function digitalAgent(
+  history: MessageData[],
+  message: string
+): Promise<string> {
+  const systemPrompt = `Eres un asistente de IA para Frix, un servicio de desarrollo web. Tu nombre es Asistente Frix.
 Eres amigable, profesional y tu objetivo es responder preguntas sobre Frix y ayudar a los usuarios a entender los servicios.
 
 Aquí tienes información sobre Frix que DEBES usar para responder:
@@ -43,25 +35,20 @@ Aquí tienes información sobre Frix que DEBES usar para responder:
 
 Mantén tus respuestas breves y directas. Si no sabes la respuesta a algo, di amablemente que no tienes esa información y sugiere que contacten a través del formulario. No inventes información.`;
 
-const digitalAgentFlow = ai.defineFlow(
-  {
-    name: 'digitalAgentFlow',
-    inputSchema: DigitalAgentInputSchema,
-    outputSchema: z.string(),
-  },
-  async ({ history, message }) => {
-    const { text } = await ai.generate({
-      model: googleAI.model('gemini-pro'),
-      system: systemPrompt,
-      history, // Mantiene el historial completo
-      prompt: message,
-      temperature: 0.7, // Opcional: controla creatividad
-      maxOutputTokens: 512, // Opcional: limita la longitud de la respuesta
-    });
-    return text;
-  }
-);
+  const prompt = `${systemPrompt}\n\nUsuario: ${message}`;
 
-export async function digitalAgent(history: MessageData[], message: string): Promise<string> {
-  return await digitalAgentFlow({ history, message });
+  const res = await fetch(`https://api.ollama.com/models/${OLLAMA_MODEL}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${OLLAMA_API_KEY}`,
+    },
+    body: JSON.stringify({ prompt, temperature: 0.7, max_tokens: 512 }),
+  });
+
+  if (!res.ok) throw new Error(`Ollama API error: ${res.status} ${res.statusText}`);
+
+  const data = await res.json();
+  // Devuelve solo el texto de la IA
+  return data.completion as string;
 }
