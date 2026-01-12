@@ -1,4 +1,4 @@
-import { Twitter, Github, Linkedin } from 'lucide-react';
+import { Twitter, Github, Linkedin, Instagram } from 'lucide-react';
 import Link from 'next/link';
 import { Logo } from './logo';
 import { Button } from './ui/button';
@@ -18,18 +18,8 @@ export default function Footer() {
         </div>
         <div className="flex items-center gap-2">
           <Button variant="ghost" size="icon" asChild>
-            <Link href="#" aria-label="Twitter">
-              <Twitter className="h-5 w-5" />
-            </Link>
-          </Button>
-          <Button variant="ghost" size="icon" asChild>
-            <Link href="#" aria-label="GitHub">
-              <Github className="h-5 w-5" />
-            </Link>
-          </Button>
-          <Button variant="ghost" size="icon" asChild>
-            <Link href="#" aria-label="LinkedIn">
-              <Linkedin className="h-5 w-5" />
+            <Link href="https://www.instagram.com/webfrix/" aria-label="Twitter">
+              <Instagram className="h-5 w-5" />
             </Link>
           </Button>
         </div>
