@@ -67,7 +67,7 @@ export default function Header() {
               </Button>
             ))}
           </nav>
-          <div className="flex items-center gap-2">
+          {/* <div className="flex items-center gap-2">
              {isClient && (isAuthenticated ? (
                 <UserNav />
              ) : (
@@ -75,7 +75,7 @@ export default function Header() {
                     <Link href="/login">Iniciar Sesión</Link>
                 </Button>
             ))}
-          </div>
+          </div> */}
         </div>
       </div>
     </header>
