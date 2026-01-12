@@ -1,66 +1,59 @@
-'use server';
+'use client';
 
 import { MessageData } from 'genkit';
 
-const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'https://ia-web-7fur.onrender.com';
+const responses = {
+  servicios: `Ofrecemos los siguientes servicios:
+- Diseño Web a Medida: Diseños únicos y atractivos.
+- E-commerce: Tiendas online robustas y seguras.
+- Landing Pages: Páginas de aterrizaje de alto impacto.
+- Integración con IA: Potenciar webs con inteligencia artificial.`,
+  precios: `Nuestros precios son:
+- Landing Page Básica: 10-20 €
+- Web Corporativa: 30-50 € (el plan más popular)
+- Web Dinámica Básica: 70-100 €
+- Mantenimiento opcional: desde 5-10 €/mes.
+Además ofrecemos un prototipo gratuito antes de pagar.`,
+  contacto: `Para contactar con nosotros, por favor rellena el formulario en la sección de contacto de nuestra web.`,
+  proceso: `Nuestro proceso de trabajo es:
+1. Consulta y Plan
+2. Diseño y Desarrollo
+3. Revisión y Feedback
+4. Lanzamiento y Entrega`
+};
 
-// Función para limpiar el mensaje del usuario
-function sanitizeMessage(message: string): string {
-  // Eliminamos caracteres no imprimibles y símbolos extraños
-  return message.replace(/[^a-zA-Z0-9.,áéíóúÁÉÍÓÚñÑüÜ¡!¿?() \n-]/g, '').trim();
-}
+// Preguntas sugeridas para el cliente
+const suggestions = `
+Puedes probar preguntando:
+- ¿Qué servicios ofrecéis?
+- ¿Cuánto cuesta una web?
+- ¿Cuál es vuestro proceso de trabajo?
+- ¿Cómo puedo contactar con vosotros?
+`;
+
+// Lista de palabras clave por categoría
+const keywords = {
+  servicios: ['servicios', 'ofrecéis', 'ofrecer'],
+  precios: ['precio', 'coste', 'cuesta', 'cuánto', 'cuanto'],
+  contacto: ['contacto', 'contactar', 'formulario'],
+  proceso: ['proceso', 'trabajo', 'pasos', 'plan']
+};
 
 export async function digitalAgent(
   history: MessageData[],
   message: string
 ): Promise<string> {
-  const cleanMessage = sanitizeMessage(message);
+  const msg = message.toLowerCase();
 
-  // Prompt del sistema con toda la información de Frix
-  const systemPrompt = `Eres un asistente de IA para Frix, un servicio de desarrollo web. Tu nombre es Asistente Frix.
-Eres amigable, profesional y tu objetivo es responder preguntas sobre Frix y ayudar a los usuarios a entender los servicios.
-
-Aquí tienes información sobre Frix que DEBES usar para responder:
-- **Servicios Principales**:
-  - Diseño Web a Medida: Diseños únicos y atractivos.
-  - E-commerce: Tiendas online robustas y seguras.
-  - Landing Pages: Páginas de aterrizaje de alto impacto para marketing.
-  - Integración con IA: Potenciar webs con inteligencia artificial.
-- **Precios**:
-  - Landing Page Básica: 10-20 €
-  - Web Corporativa: 30-50 € (Es el plan más popular)
-  - Web Dinámica Básica: 70-100 €
-  - Mantenimiento opcional: desde 5-10 €/mes.
-  - Ofrecen un prototipo gratuito para que el cliente vea cómo será su web antes de pagar.
-- **Proceso de Trabajo**:
-  1. Consulta y Plan
-  2. Diseño y Desarrollo
-  3. Revisión y Feedback
-  4. Lanzamiento y Entrega
-- **Stack Tecnológico**: Next.js, Tailwind CSS, y Vercel.
-- **Contacto**: Para contactar, el usuario debe rellenar el formulario en la sección de contacto de la web.
-
-Mantén tus respuestas breves y directas. Si no sabes la respuesta a algo, di amablemente que no tienes esa información y sugiere que contacten a través del formulario. No inventes información.`;
-
-  const prompt = `${systemPrompt}\n\nUsuario: ${cleanMessage}`;
-
-  try {
-    const res = await fetch(`${BACKEND_URL}/chat`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ prompt, max_length: 400 }), // más tokens para coherencia
-    });
-
-    if (!res.ok) {
-      throw new Error(`Backend error: ${res.status} ${res.statusText}`);
-    }
-
-    const data = await res.json();
-    return data.completion as string;
-  } catch (err) {
-    console.error(err);
-    return 'Lo siento, hubo un error procesando tu solicitud. Por favor, inténtalo más tarde.';
+  // Función para comprobar si alguna palabra clave está en el mensaje
+  function containsKeyword(category: keyof typeof keywords) {
+    return keywords[category].some((k) => msg.includes(k));
   }
+
+  if (containsKeyword('servicios')) return responses.servicios;
+  if (containsKeyword('precios')) return responses.precios;
+  if (containsKeyword('contacto')) return responses.contacto;
+  if (containsKeyword('proceso')) return responses.proceso;
+
+  return `Lo siento, no tengo esa información. ${suggestions}`;
 }
