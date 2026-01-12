@@ -1,0 +1,34 @@
+{
+  "placeholderImages": [
+    {
+      "id": "hero-image",
+      "description": "A modern desk setup with a laptop showing code.",
+      "imageUrl": "https://images.unsplash.com/photo-1741466071751-c62474d2d3ae?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxkZXNrJTIwbGFwdG9wfGVufDB8fHx8MTc2ODExMTU3MHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "desk laptop"
+    },
+    {
+      "id": "portfolio-1",
+      "description": "A stylish e-commerce website for a fashion brand.",
+      "imageUrl": "https://images.unsplash.com/photo-1630573133579-75e54088eb4a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHx3ZWJzaXRlJTIwZmFzaGlvbnxlbnwwfHx8fDE3NjgxNjcyNDh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "website fashion"
+    },
+    {
+      "id": "portfolio-2",
+      "description": "A clean and professional portfolio website for a photographer.",
+      "imageUrl": "https://images.unsplash.com/photo-1592839961631-0351c10a0b47?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHx3ZWJzaXRlJTIwcG9ydGZvbGlvfGVufDB8fHx8MTc2ODEzNTI0MXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "website portfolio"
+    },
+    {
+      "id": "portfolio-3",
+      "description": "A vibrant landing page for a mobile application.",
+      "imageUrl": "https://images.unsplash.com/photo-1702479744181-2d6b58941583?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHx3ZWJzaXRlJTIwYXBwfGVufDB8fHx8MTc2ODE2NzI0OHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "website app"
+    },
+    {
+      "id": "avatar-1",
+      "description": "User avatar.",
+      "imageUrl": "https://images.unsplash.com/photo-1540569014015-19a7be504e3a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxwZXJzb24lMjBwb3J0cmFpdHxlbnwwfHx8fDE3NjgxMTI1NjR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "person portrait"
+    }
+  ]
+}
