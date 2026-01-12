@@ -8,7 +8,7 @@ import { BrainCircuit, CheckCircle, Code, Mail, Send, Bot, Sparkles, Check, Doll
 import Image from "next/image";
 import Link from "next/link";
 import { NextJsLogo, TailwindCssLogo, VercelLogo } from "../components/tech-logos";
-import { AiIdeaGenerator } from "../components/ai-idea-generator";
+// import { AiIdeaGenerator } from "../components/ai-idea-generator";
 
 
 export default function Home() {
@@ -78,7 +78,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-        
+{/*         
         <section id="ai-generator" className="w-full py-12 md:py-24 lg:py-32 bg-secondary/50">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
@@ -94,7 +94,7 @@ export default function Home() {
               <AiIdeaGenerator />
             </div>
           </div>
-        </section>
+        </section> */}
 
         <section id="tech-stack" className="w-full py-12 md:py-24 lg:py-32 bg-card">
             <div className="container px-4 md:px-6">
