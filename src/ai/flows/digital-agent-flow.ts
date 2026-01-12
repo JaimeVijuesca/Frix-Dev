@@ -4,11 +4,19 @@ import { MessageData } from 'genkit';
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'https://ia-web-7fur.onrender.com';
 
+// Función para limpiar el mensaje del usuario
+function sanitizeMessage(message: string): string {
+  // Eliminamos caracteres no imprimibles y símbolos extraños
+  return message.replace(/[^a-zA-Z0-9.,áéíóúÁÉÍÓÚñÑüÜ¡!¿?() \n-]/g, '').trim();
+}
+
 export async function digitalAgent(
   history: MessageData[],
   message: string
 ): Promise<string> {
-  // Construimos un prompt con información de Frix, igual que antes
+  const cleanMessage = sanitizeMessage(message);
+
+  // Prompt del sistema con toda la información de Frix
   const systemPrompt = `Eres un asistente de IA para Frix, un servicio de desarrollo web. Tu nombre es Asistente Frix.
 Eres amigable, profesional y tu objetivo es responder preguntas sobre Frix y ayudar a los usuarios a entender los servicios.
 
@@ -34,7 +42,7 @@ Aquí tienes información sobre Frix que DEBES usar para responder:
 
 Mantén tus respuestas breves y directas. Si no sabes la respuesta a algo, di amablemente que no tienes esa información y sugiere que contacten a través del formulario. No inventes información.`;
 
-  const prompt = `${systemPrompt}\n\nUsuario: ${message}`;
+  const prompt = `${systemPrompt}\n\nUsuario: ${cleanMessage}`;
 
   try {
     const res = await fetch(`${BACKEND_URL}/chat`, {
@@ -42,7 +50,7 @@ Mantén tus respuestas breves y directas. Si no sabes la respuesta a algo, di am
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ prompt, max_length: 100 }),
+      body: JSON.stringify({ prompt, max_length: 400 }), // más tokens para coherencia
     });
 
     if (!res.ok) {
