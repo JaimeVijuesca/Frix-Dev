@@ -7,12 +7,28 @@ import Footer from '../components/footer';
 import { DigitalAgent } from '../components/digital-agent';
 
 export const metadata: Metadata = {
-  title: 'Frix - Creación de Sitios Web Rápidos y Sencillos',
-  description: 'Desarrollo web a medida con las últimas tecnologías. Rápido, sencillo y profesional.',
-  verification: {
-    google: 'T1U4A58A9wSHXZA5dEONz58kmdWE0a5ZCMcxm_Cxa7c',
+  title: {
+    default: 'Frix Dev | Desarrollo Web Profesional',
+    template: '%s | Frix Dev',
+  },
+  description:
+    'Desarrollador web especializado en Next.js, React y SEO. Webs rápidas, modernas y optimizadas para convertir.',
+  metadataBase: new URL('https://frix-dev.vercel.app'),
+  openGraph: {
+    title: 'Frix Dev | Desarrollo Web Profesional',
+    description:
+      'Webs modernas, rápidas y optimizadas para SEO con Next.js.',
+    url: 'https://frix-dev.vercel.app',
+    siteName: 'Frix Dev',
+    locale: 'es_ES',
+    type: 'website',
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
+
 export default function RootLayout({
   children,
 }: Readonly<{
