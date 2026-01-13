@@ -13,7 +13,7 @@ import { users } from '../../lib/data';
 
 // In a real app, you'd get the user from session/context
 const user = users['client1'];
-// const user = users['admin1']; // Uncomment to test admin view
+//const user = users['admin1']; // Uncomment to test admin view
 
 const clientNavItems = [
   { href: '/dashboard', label: 'Resumen', icon: LayoutDashboard },

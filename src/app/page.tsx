@@ -4,12 +4,25 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import ContactForm from "../components/contact-form";
 import { PlaceHolderImages } from "../lib/placeholder-images";
 import { services, portfolio, processSteps } from "../lib/data";
-import { BrainCircuit, CheckCircle, Code, Mail, Send, Bot, Sparkles, Check, DollarSign } from "lucide-react";
+import {Check, } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { NextJsLogo, TailwindCssLogo, VercelLogo } from "../components/tech-logos";
+import type { Metadata } from 'next';
+
 // import { AiIdeaGenerator } from "../components/ai-idea-generator";
 
+export const metadata: Metadata = {
+  title: 'Desarrollo Web Profesional para Negocios',
+  description:
+    'Diseño y desarrollo de páginas web rápidas, modernas y optimizadas para SEO. Ideal para negocios, emprendedores y pequeñas empresas.',
+  openGraph: {
+    title: 'Desarrollo Web Profesional | Frix Dev',
+    description:
+      'Creamos sitios web rápidos y profesionales con Next.js. Aumenta tu presencia online y consigue más clientes.',
+    url: 'https://frix-dev.vercel.app',
+  },
+};
 
 export default function Home() {
   return (
@@ -53,7 +66,7 @@ export default function Home() {
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
                 <div className="inline-block rounded-lg bg-secondary px-3 py-1 text-sm">Nuestros Servicios</div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl font-headline">Qué Hacemos por Ti</h2>
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl font-headline">Servicios de Desarrollo Web</h2>
                 <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                   Ofrecemos soluciones web integrales, desde páginas de presentación hasta tiendas online, siempre con un enfoque en la calidad y la velocidad.
                 </p>
@@ -101,7 +114,7 @@ export default function Home() {
                 <div className="flex flex-col items-center justify-center space-y-4 text-center">
                     <div className="space-y-2">
                         <div className="inline-block rounded-lg bg-secondary px-3 py-1 text-sm">Nuestro Stack Tecnológico</div>
-                        <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl font-headline">Construido con las Mejores Herramientas</h2>
+                        <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl font-headline">Tecnologías para Desarrollo Web</h2>
                         <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                             Utilizamos un stack de tecnologías moderno y de alto rendimiento para garantizar que tu sitio web sea rápido, escalable y robusto.
                         </p>
@@ -132,7 +145,7 @@ export default function Home() {
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
                 <div className="inline-block rounded-lg bg-card px-3 py-1 text-sm">Proceso de Trabajo</div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl font-headline">Rápido, Sencillo y Transparente</h2>
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl font-headline">Proceso de Desarrollo Web</h2>
                 <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                   Nuestro proceso está diseñado para ser eficiente y colaborativo, asegurando que obtengas el sitio web que deseas sin complicaciones.
                 </p>
@@ -160,7 +173,7 @@ export default function Home() {
           Proyectos de muestra
         </div>
         <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl font-headline">
-          Ejemplos de diseño web
+          Proyectos de Desarrollo Web
         </h2>
         <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
           Ejemplos de sitios web que puedo crear para pequeños negocios y emprendedores.
@@ -199,7 +212,7 @@ export default function Home() {
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-3">
-                <div className="inline-block rounded-lg bg-card px-3 py-1 text-sm">Precios</div>
+                <div className="inline-block rounded-lg bg-card px-3 py-1 text-sm">Precios de Desarrollo Web</div>
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl font-headline">¡Tu web profesional desde solo 10 €!</h2>
                 <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                   Sabemos que empezar puede dar miedo, así que creamos un prototipo gratuito: te mostramos cómo será tu web antes de pagar. Con nosotros obtienes diseño adaptado a tu negocio, una experiencia de usuario clara y apoyo en todo el proceso.
