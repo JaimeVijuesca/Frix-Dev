@@ -10,7 +10,6 @@ import { useState, useEffect } from 'react';
 
 const navLinks = [
   { href: '#services', label: 'Servicios' },
-  { href: '#ai-generator', label: 'Ideas con IA' },
   { href: '#portfolio', label: 'Proyectos' },
   { href: '#contact', label: 'Contacto' },
 ];

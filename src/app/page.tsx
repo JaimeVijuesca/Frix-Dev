@@ -34,18 +34,16 @@ export default function Home() {
               <div className="flex flex-col justify-center space-y-4">
                 <div className="space-y-2">
                   <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none font-headline">
-                    Sitios Web Rápidos y Profesionales para tu Negocio
+                  FIX 
                   </h1>
                   <p className="max-w-[600px] text-muted-foreground md:text-xl">
-                    En Frix, transformamos tus ideas en sitios web de alto rendimiento. Simplicidad, velocidad y diseño a tu alcance.
+                   Soy desarrollador web freelance. Creo páginas rápidas y claras para
+emprendedores y negocios pequeños que necesitan empezar en internet.
                   </p>
                 </div>
                 <div className="flex flex-col gap-2 min-[400px]:flex-row">
                   <Button asChild size="lg">
-                    <Link href="#contact">Solicita tu Web</Link>
-                  </Button>
-                  <Button asChild variant="outline" size="lg">
-                    <Link href="#services">Nuestros Servicios</Link>
+                    <Link href="#contact">Hablamos sin compromiso</Link>
                   </Button>
                 </div>
               </div>
@@ -55,7 +53,7 @@ export default function Home() {
                 height={400}
                 alt="Hero"
                 data-ai-hint={PlaceHolderImages[0].imageHint}
-                className="mx-auto aspect-video overflow-hidden rounded-xl object-cover sm:w-full lg:order-last"
+                className="mx-auto aspect-video overflow-hidden rounded-xl object-cover sm:w-full lg:order-last border-4 border-indigo-500"
               />
             </div>
           </div>
@@ -63,32 +61,11 @@ export default function Home() {
 
         <section id="services" className="w-full py-12 md:py-24 lg:py-32">
           <div className="container px-4 md:px-6">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <div className="inline-block rounded-lg bg-secondary px-3 py-1 text-sm">Nuestros Servicios</div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl font-headline">Servicios de Desarrollo Web</h2>
-                <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  Ofrecemos soluciones web integrales, desde páginas de presentación hasta tiendas online, siempre con un enfoque en la calidad y la velocidad.
-                </p>
-              </div>
-            </div>
-            <div className="mx-auto grid max-w-5xl items-start gap-8 sm:grid-cols-2 md:gap-12 lg:max-w-none lg:grid-cols-3 mt-12">
-              {services.map((service) => (
-                <Card key={service.title} className="flex flex-col">
-                  <CardHeader>
-                    <div className="flex items-center gap-4">
-                      <div className="bg-primary text-primary-foreground rounded-full p-3">
-                         <service.icon className="h-6 w-6" />
-                      </div>
-                      <CardTitle className="font-headline">{service.title}</CardTitle>
-                    </div>
-                  </CardHeader>
-                  <CardContent className="flex-grow">
-                    <p className="text-muted-foreground">{service.description}</p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl font-headline">Tecnología moderna y fiable</h2>
+                        <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                           Uso herramientas actuales para que la web cargue rápido y funcione bien,
+sin que tengas que preocuparte por lo técnico.
+                        </p>  
           </div>
         </section>
 {/*         
@@ -109,38 +86,12 @@ export default function Home() {
           </div>
         </section> */}
 
-        <section id="tech-stack" className="w-full py-12 md:py-24 lg:py-32 bg-card">
-            <div className="container px-4 md:px-6">
-                <div className="flex flex-col items-center justify-center space-y-4 text-center">
-                    <div className="space-y-2">
-                        <div className="inline-block rounded-lg bg-secondary px-3 py-1 text-sm">Nuestro Stack Tecnológico</div>
-                        <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl font-headline">Tecnologías para Desarrollo Web</h2>
-                        <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                            Utilizamos un stack de tecnologías moderno y de alto rendimiento para garantizar que tu sitio web sea rápido, escalable y robusto.
-                        </p>
-                    </div>
-                </div>
-                <div className="mx-auto grid max-w-4xl items-center gap-8 sm:grid-cols-3 md:gap-12 mt-12">
-                    <div className="flex flex-col items-center justify-center gap-2">
-                        <NextJsLogo className="h-20 w-20" />
-                        <h3 className="text-lg font-bold">Next.js</h3>
-                        <p className="text-sm text-muted-foreground">Framework de React para producción.</p>
-                    </div>
-                    <div className="flex flex-col items-center justify-center gap-2">
-                        <TailwindCssLogo className="h-20 w-20" />
-                        <h3 className="text-lg font-bold">Tailwind CSS</h3>
-                        <p className="text-sm text-muted-foreground">Framework CSS utility-first.</p>
-                    </div>
-                    <div className="flex flex-col items-center justify-center gap-2">
-                        <VercelLogo className="h-20 w-20" />
-                        <h3 className="text-lg font-bold">Vercel</h3>
-                        <p className="text-sm text-muted-foreground">Plataforma de despliegue optimizada.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+    
+                   
+                       
+      
 
-        <section id="process" className="w-full py-12 md:py-24 lg:py-32 bg-secondary/50">
+        {/* <section id="process" className="w-full py-12 md:py-24 lg:py-32 bg-secondary/50">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
@@ -163,7 +114,7 @@ export default function Home() {
                 ))}
             </div>
           </div>
-        </section>
+        </section> */}
 
         <section id="portfolio" className="w-full py-12 md:py-24 lg:py-32 bg-card">
   <div className="container px-4 md:px-6">
@@ -212,10 +163,10 @@ export default function Home() {
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-3">
-                <div className="inline-block rounded-lg bg-card px-3 py-1 text-sm">Precios de Desarrollo Web</div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl font-headline">¡Tu web profesional desde solo 10 €!</h2>
+                <div className="inline-block rounded-lg bg-card px-3 py-1 text-sm">Precios orientativos</div>
                 <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  Sabemos que empezar puede dar miedo, así que creamos un prototipo gratuito: te mostramos cómo será tu web antes de pagar. Con nosotros obtienes diseño adaptado a tu negocio, una experiencia de usuario clara y apoyo en todo el proceso.
+                  Estos precios son orientativos. Cada proyecto es distinto y prefiero
+hablar contigo antes de darte un presupuesto final.
                 </p>
               </div>
             </div>
