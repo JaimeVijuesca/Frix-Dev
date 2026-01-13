@@ -5,10 +5,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const staticPages = [
     '',
-    '/services',
-    '/ai-generator',
-    '/portfolio',
-    '/contact',
+    '/#services',
+    '/#ai-generator',
+    '/#portfolio',
+    '/#contact',
   ];
 
   return staticPages.map((page) => ({
