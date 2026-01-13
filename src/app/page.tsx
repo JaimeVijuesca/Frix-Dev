@@ -27,37 +27,39 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <div className="flex flex-col min-h-dvh">
-      <main className="flex-1">
-        <section id="hero" className="w-full py-20 md:py-32 lg:py-40 bg-card">
-          <div className="container px-4 md:px-6">
-            <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
-              <div className="flex flex-col justify-center space-y-4">
-                <div className="space-y-2">
-                  <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none font-headline">
-                  FIX 
-                  </h1>
-                  <p className="max-w-[600px] text-muted-foreground md:text-xl">
-                   Soy desarrollador web freelance. Creo páginas rápidas y claras para
-emprendedores y negocios pequeños que necesitan empezar en internet.
-                  </p>
-                </div>
-                <div className="flex flex-col gap-2 min-[400px]:flex-row">
-                  <Button asChild size="lg">
-                    <Link href="#contact">Hablamos sin compromiso</Link>
-                  </Button>
-                </div>
-              </div>
-              <Image
-                src={PlaceHolderImages[0].imageUrl}
-                width={600}
-                height={400}
-                alt="Hero"
-                data-ai-hint={PlaceHolderImages[0].imageHint}
-                className="mx-auto aspect-video overflow-hidden rounded-xl object-cover sm:w-full lg:order-last border-4 border-indigo-500"
-              />
-            </div>
-          </div>
-        </section>
+     <main className="flex-1">
+    <section id="hero" className="w-full min-h-screen flex items-center bg-card">
+  <div className="container mx-auto px-4 md:px-6 text-center">
+    {/* Título principal */}
+    <h1 className="text-5xl sm:text-6xl md:text-7xl font-extrabold tracking-tight font-headline text-indigo-600">
+      FRIX
+    </h1>
+
+    {/* Frase ingeniosa */}
+   <h2 className="mt-4 text-xl sm:text-2xl md:text-3xl font-semibold text-white">
+  Hacemos que tu web brille, incluso antes de que la veas.
+</h2>
+
+    {/* Descripción */}
+  <p className="mt-6 max-w-3xl mx-auto text-lg sm:text-xl md:text-2xl text-gray-400 leading-relaxed">
+  Soy desarrollador web freelance. Creo páginas rápidas, claras y modernas para
+  emprendedores y pequeños negocios que quieren empezar con fuerza en internet.
+</p>
+
+{/* Botón */}
+<div className="mt-8 flex justify-center">
+  <Button asChild size="lg">
+    <Link
+      href="#contact"
+      className="px-8 py-4 text-lg sm:text-xl font-semibold rounded-lg bg-indigo-600 text-white shadow-lg transition-all hover:scale-105 hover:bg-indigo-500"
+    >
+      Hablamos sin compromiso
+    </Link>
+  </Button>
+</div>
+  </div>
+</section>
+
 
         <section id="services" className="w-full py-12 md:py-24 lg:py-32">
           <div className="container px-4 md:px-6">
