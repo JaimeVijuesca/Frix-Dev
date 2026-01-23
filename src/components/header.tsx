@@ -8,6 +8,7 @@ import { Logo } from './logo';
 import { UserNav } from './user-nav';
 import { useState, useEffect } from 'react';
 
+
 const navLinks = [
   { href: '#services', label: 'Servicios' },
   { href: '#portfolio', label: 'Proyectos' },
